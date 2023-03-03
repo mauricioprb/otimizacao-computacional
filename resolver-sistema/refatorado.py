@@ -29,13 +29,13 @@ def abre_arquivo(nomeArquivo):
     with open(nomeArquivo) as dados:
       for linha in dados:# Percorre linha a linha o arquivo
         print(linha)
-        elementos = linha.split('=')# Quebra a linha no igual
+        elementos = linha.split('=') # Quebra a linha no igual
         le = elementos[0]
         ld = elementos[1]
         termos = re.split('-|\+',le) # Separa a equação em termos
         for termo in termos:
           if len(termo)>0:
-            c,v = separaCoef_var(termo)
+            c,v = separaCoef_var(termo.lstrip().rstrip())
             insereVariavel(v) # Adiciona a variável no dicionário
           print('t:',termo)
         
