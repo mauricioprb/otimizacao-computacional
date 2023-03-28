@@ -1,4 +1,4 @@
-import re 
+import re
 
 matriz = []
 nome_variaveis = {}  # Dicionário com o nome das variáveis
@@ -18,8 +18,11 @@ def escalonar(matriz, chaves):
         # Zerar os elementos acima e abaixo da diagonal principal
         for j in range(linhas):
             if j != i:
+                #  Fator de escala que é igual ao elemento na coluna do pivô dividido pelo pivô da linha que contém o pivô
                 fator = matriz[j][i]
+                # Garante que todos os elementos abaixo e acima da diagonal principal sejam iguais a zero
                 for k in range(colunas):
+                    # Subtrai o produto desse fator de escala pelo elemento na coluna do pivô da linha que contém o pivô de cada elemento na linha atual
                     matriz[j][k] -= fator * matriz[i][k]
     # Arredonda elementos para duas casas decimais
     matriz = [[round(elem, 2) for elem in row] for row in matriz]
@@ -85,6 +88,7 @@ def separa_coeficiente_variavel(termo):
 
 # Monta um vetor com os coeficientes das keys a partir da linha
 
+
 lista_coeficientes = []
 
 
@@ -142,7 +146,7 @@ def buscar_valores(dados_valores, chaves, ld):
         resultado[i].append(lista_int[i])
 
     # Insere as chaves na posição inicial da matriz
-    escalonar(matriz,chaves)
+    escalonar(matriz, chaves)
 
 
 def abre_arquivo(nome_arquivo):
@@ -164,7 +168,7 @@ def abre_arquivo(nome_arquivo):
             if len(termo) > 0:
                 c, v = separa_coeficiente_variavel(termo.lstrip().rstrip())
                 insere_variavel(v)
-                
+
     # Obtém uma lista de todas as chaves do dicionário
     chaves = list(nome_variaveis.keys())
     # Adiciona as chaves não existentes na lista de chaves
